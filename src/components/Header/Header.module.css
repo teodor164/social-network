@@ -1,0 +1,18 @@
+:root {
+  --color-bkg: rgba(32, 35, 42);
+  --color-text-white: rgb(231, 229, 218);
+  --color-text-black: rgb(26, 22, 4);
+}
+
+.header {
+  background-color: var(--color-bkg);
+  color: var(--color-text-white);
+}
+
+.loginBlock {
+  float: right;
+}
+
+.loginBlock a {
+  color: var(--color-brown-text);
+}

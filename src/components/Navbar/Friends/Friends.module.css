@@ -1,0 +1,11 @@
+.itemsBlock {
+  display: flex;
+}
+
+.item {
+  margin-top: 200px;
+}
+
+.text {
+  font-size: 70px;
+}

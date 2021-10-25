@@ -1,0 +1,9 @@
+.userPhoto {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 200px;
+}
+
+.selectedPage {
+  font-weight: bold;
+}

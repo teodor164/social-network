@@ -1,0 +1,25 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+  padding: 10px;
+}
+
+.addBlock {
+  margin-top: 23.5rem;
+  display: flex;
+  margin-left: 3rem;
+}
+
+.addBlock button {
+  height: 1.3rem;
+  margin-left: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.addBlock textarea {
+  height: 1.5rem;
+  width: 30rem;
+}

@@ -1,0 +1,29 @@
+:root {
+  --color-bkg-app: #ffffff;
+}
+
+.app-wrapper {
+  font-size: 1.4vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-info-context {
+  display: flex;
+  flex-direction: row;
+}
+
+.contextBox {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
+  background-color: var(--color-bkg-app);
+  text-align: center;
+}
+
+.all-info-page {
+  background-color: rgba(240, 240, 240);
+  display: flex;
+  flex-direction: row;
+}

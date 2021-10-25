@@ -1,0 +1,28 @@
+.itemBox {
+  color: var(--color-text-black);
+  border: 1px solid;
+  margin: 0.7em 2em;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3vw;
+  align-items: center;
+}
+
+.imgBox {
+  width: 6em;
+  height: auto;
+  padding: 0.7em;
+}
+
+.imgBox img {
+  width: 100%;
+  height: auto;
+  border-radius: 100%;
+}
+
+.text {
+  margin-left: 1em;
+}

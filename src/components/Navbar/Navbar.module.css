@@ -1,0 +1,21 @@
+:root {
+  --color-bkg-nav: rgba(240, 240, 240);
+}
+
+.nav {
+  background-color: var(--color-bkg-nav);
+  padding: 2em 0 0 0.7em;
+}
+
+.item {
+  margin-bottom: 1em;
+}
+
+.item a {
+  text-decoration: none;
+  color: rgb(144, 144, 144);
+}
+
+a.activeLink {
+  color: rgb(51, 51, 143);
+}
