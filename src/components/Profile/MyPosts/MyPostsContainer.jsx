@@ -10,13 +10,11 @@ let mapStateToProps = (state) => {
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addPostBtt: (postText) => {
-      dispatch(addPost(postText))
-    },
-  }
-}
+let mapDispatchToProps = (dispatch) => ({
+  addPostBtt: (postText) => {
+    dispatch(addPost(postText))
+  },
+})
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 

@@ -1,12 +1,6 @@
-:root {
-  --color-bkg: rgba(32, 35, 42);
-  --color-text-white: rgb(231, 229, 218);
-  --color-text-black: rgb(26, 22, 4);
-}
-
 .header {
-  background-color: var(--color-bkg);
-  color: var(--color-text-white);
+  background-color: var(--bkg-block);
+  color: var(--text-white);
 }
 
 .loginBlock {
@@ -14,5 +8,5 @@
 }
 
 .loginBlock a {
-  color: var(--color-brown-text);
+  color: var(--text-white);
 }

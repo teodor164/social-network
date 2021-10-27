@@ -1,5 +1,14 @@
 :root {
-  --color-bkg-app: #ffffff;
+  --bkg-content: #ffffff;
+  --bkg-block: rgb(40, 44, 52);
+  --bkg-all-page-grey: rgba(240, 240, 240);
+  --text-grey: rgb(144, 144, 144);
+  --text-active: rgb(51, 51, 143);
+  --text-key: #9cdcfe;
+  --text-property-default: #1e38a1;
+  --text-string: #ac4b1e;
+  --text-white: rgb(231, 229, 218);
+  --text-black: rgb(26, 22, 4);
 }
 
 .app-wrapper {
@@ -17,13 +26,13 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 55%;
-  background-color: var(--color-bkg-app);
+  width: 65%;
+  background-color: var(--bkg-content);
   text-align: center;
 }
 
 .all-info-page {
-  background-color: rgba(240, 240, 240);
+  background-color: var(--bkg-all-page-grey);
   display: flex;
   flex-direction: row;
 }

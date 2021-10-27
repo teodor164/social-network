@@ -56,7 +56,6 @@ export const userLogin = (email, password, rememberMe) => async (dispatch) => {
         ? response.data.messages[0]
         : 'Some error'
     dispatch(stopSubmit('login', { _error: err }))
-    console.log(response.data.messages[0])
   }
 }
 

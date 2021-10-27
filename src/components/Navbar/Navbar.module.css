@@ -1,10 +1,6 @@
-:root {
-  --color-bkg-nav: rgba(240, 240, 240);
-}
-
 .nav {
-  background-color: var(--color-bkg-nav);
   padding: 2em 0 0 0.7em;
+  height: 31.6em;
 }
 
 .item {
@@ -13,9 +9,9 @@
 
 .item a {
   text-decoration: none;
-  color: rgb(144, 144, 144);
+  color: var(--text-grey);
 }
 
 a.activeLink {
-  color: rgb(51, 51, 143);
+  color: var(--text-active);
 }

@@ -11,13 +11,11 @@ let mapStateToPropos = (state) => {
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addMessgeBtt: (newMessageBoddy) => {
-      dispatch(addMessge(newMessageBoddy))
-    },
-  }
-}
+let mapDispatchToProps = (dispatch) => ({
+  addMessgeBtt: (newMessageBoddy) => {
+    dispatch(addMessge(newMessageBoddy))
+  },
+})
 
 export default compose(
   connect(mapStateToPropos, mapDispatchToProps),
