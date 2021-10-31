@@ -15,14 +15,27 @@ import Preloader from './components/common/Preloader/Preloader'
 import store from './redux/reduxStore'
 import { Provider } from 'react-redux'
 import LazyLoading from './hoc/LazyLoading'
+import { Redirect } from 'react-router'
 
 const SettingsContainer = React.lazy(() =>
   import('./components/Settings/Settings')
 )
 
 class App extends Component {
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    alert('Some error occured')
+    console.error(promiseRejectionEvent)
+  }
+
   componentDidMount() {
     this.props.initializeApp()
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  }
+  componentWillUnmount() {
+    window.removeEventListener(
+      'unhandledrejection',
+      this.catchAllUnhandledErrors
+    )
   }
 
   render() {
@@ -34,6 +47,7 @@ class App extends Component {
         <div className="all-info-page">
           <Navbar />
           <div className="contextBox">
+            <Route exact="/" render={() => <Redirect to={'/profile'} />} />
             <Route path="/dialogs" render={() => <DialogsContainer />} />
             <Route path="/profile/:userId?" render={() => <Profile />} />
             <Route path="/settings" render={LazyLoading(SettingsContainer)} />

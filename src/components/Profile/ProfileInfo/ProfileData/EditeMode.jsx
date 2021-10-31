@@ -27,7 +27,8 @@ const EditeMode = ({ profile, submit, saveData }) => {
   )
 }
 
-const EditeModeForm = ({ handleSubmit, profile }) => {
+const EditeModeForm = (props) => {
+  const { handleSubmit, profile, error } = props
   return (
     <form onSubmit={handleSubmit} className={s.infoBlock}>
       {/* InfoBlock */}
@@ -67,7 +68,7 @@ const EditeModeForm = ({ handleSubmit, profile }) => {
               <span className={s.property}>
                 {createField(null, `contacts.${key}`, Input, [], null)}
               </span>
-              {/* {error && <div className={s.formSummaryError}>{error}</div>} */}
+              {error && <div className={s.formSummaryError}>{error}</div>}
             </div>
           )
         })}

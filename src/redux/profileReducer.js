@@ -118,7 +118,7 @@ export const saveData = (data) => {
       dispatch(getProfileInfo(id))
       dispatch(toggleEditMode(false))
     } else {
-      dispatch(stopSubmit('profileData', { _error: response.data.messages[0] }))
+      dispatch(stopSubmit('profileForm', { _error: response.data.messages[0] }))
     }
   }
 }

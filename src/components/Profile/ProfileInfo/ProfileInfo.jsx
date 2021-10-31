@@ -5,17 +5,18 @@ import ProfileStatus from './ProfileStatus/ProfileStatus'
 import profilePhoto from './../../../assets/images/profile.png'
 import ProfileData from './ProfileData/ProfileData'
 
-const ProfileInfo = ({
-  profile,
-  status,
-  updateStatus,
-  isOwner,
-  savePhoto,
-  toggleEditMode,
-  editMode,
-  saveData,
-  submit,
-}) => {
+const ProfileInfo = (props) => {
+  const {
+    profile,
+    status,
+    updateStatus,
+    isOwner,
+    savePhoto,
+    toggleEditMode,
+    editMode,
+    saveData,
+    submit,
+  } = props
   if (!profile) {
     return <Preloader />
   }
