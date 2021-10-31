@@ -9,6 +9,7 @@ let Users = ({
   onPageChanged,
   users,
   portionSize,
+  isAuth,
   ...props
 }) => {
   return (
@@ -27,6 +28,7 @@ let Users = ({
           followingInProgress={props.followingInProgress}
           unfollow={props.unfollow}
           follow={props.follow}
+          isAuth={isAuth}
         />
       ))}
     </div>

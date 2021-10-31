@@ -26,3 +26,7 @@ export const getFollowingInProgress = (state) => {
 export const getPortionSize = (state) => {
   return state.usersPage.portionSize
 }
+
+export const getIsAuth = (state) => {
+  return state.auth.isAuth
+}

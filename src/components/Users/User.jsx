@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Users.module.css'
 
-let User = ({ user, followingInProgress, unfollow, follow }) => {
+let User = ({ user, followingInProgress, unfollow, follow, isAuth }) => {
   return (
     <div>
       <div>
@@ -17,27 +17,29 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
           />
         </NavLink>
       </div>
-      <div>
-        {user.followed ? (
-          <button
-            disabled={followingInProgress.some((id) => id === user.id)}
-            onClick={() => {
-              unfollow(user.id)
-            }}
-          >
-            Unfollow
-          </button>
-        ) : (
-          <button
-            disabled={followingInProgress.some((id) => id === user.id)}
-            onClick={() => {
-              follow(user.id)
-            }}
-          >
-            Follow
-          </button>
-        )}
-      </div>
+      {isAuth && (
+        <div>
+          {user.followed ? (
+            <button
+              disabled={followingInProgress.some((id) => id === user.id)}
+              onClick={() => {
+                unfollow(user.id)
+              }}
+            >
+              Unfollow
+            </button>
+          ) : (
+            <button
+              disabled={followingInProgress.some((id) => id === user.id)}
+              onClick={() => {
+                follow(user.id)
+              }}
+            >
+              Follow
+            </button>
+          )}
+        </div>
+      )}
 
       <div>{user.name}</div>
       <div>{user.status}</div>

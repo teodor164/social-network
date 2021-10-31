@@ -17,6 +17,7 @@ import {
   getCurrentPage,
   getFollowingInProgress,
   getPortionSize,
+  getIsAuth,
 } from '../../redux/usersSelectors'
 import { withAuthRedirect } from './../../hoc/WithAuthRedirect'
 
@@ -46,6 +47,7 @@ class UsersContainer extends React.Component {
             follow={this.props.follow}
             unfollow={this.props.unfollow}
             followingInProgress={this.props.followingInProgress}
+            isAuth={this.props.isAuth}
           />
         )}
       </>
@@ -62,6 +64,7 @@ let mapStateToProps = (state) => {
     isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
     portionSize: getPortionSize(state),
+    isAuth: getIsAuth(state),
   }
 }
 
