@@ -82,3 +82,7 @@
 .propertyString {
   color: var(--text-string);
 }
+
+.formSummaryError {
+  color: red;
+}
