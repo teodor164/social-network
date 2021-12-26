@@ -4,10 +4,10 @@ import {HashRouter, Redirect, Route, withRouter} from 'react-router-dom'
 import './App.css'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import Login from './components/Login/Login'
+import {LoginPage} from './components/Login/LoginPage'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/ProfileContainer'
-import UsersContainer from './components/Users/UsersContainer'
+import {UsersPage} from './components/Users/UsersPage'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 import {initializeApp} from './redux/appReducer'
@@ -54,8 +54,8 @@ class App extends Component<MapPropsType & DispatchPropsType> {
                         <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                         <Route path="/profile/:userId?" render={() => <Profile/>}/>
                         <Route path="/settings" render={() => <LazySettings /> }/>
-                        <Route path="/users" render={() => <UsersContainer pageTitle={'Samurai'}/>}/>
-                        <Route path="/login" render={() => <Login/>}/>
+                        <Route path="/users" render={() => <UsersPage pageTitle={'Samurai'}/>}/>
+                        <Route path="/login" render={() => <LoginPage/>}/>
                     </div>
                 </div>
             </div>

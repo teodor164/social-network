@@ -1,4 +1,4 @@
-import {CustomType, instance, ResultCodeEnum, ResultCodeForCaptcha} from "./api";
+import {DefaultResponseType, instance, ResultCodeEnum, ResultCodeForCaptcha} from "./api";
 
 
 type authResponseType = {
@@ -25,6 +25,6 @@ export const authAPI = {
         }).then(response => response.data)
     },
     logout() {
-        return instance.delete<CustomType>(`auth/login`)
+        return instance.delete<DefaultResponseType>(`auth/login`)
     },
 }

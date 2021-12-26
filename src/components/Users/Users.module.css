@@ -1,9 +1,23 @@
+.userContainer {
+  margin: 1.5vw;
+  border: 1px solid #ccc;
+  float: left;
+  width: 13vw;
+  height: 13vw;
+}
+
 .userPhoto {
-  width: 6rem;
-  height: 6rem;
+  width: 6vw;
+  padding: 1vw;
   border-radius: 200px;
+}
+
+.userDescription {
+  padding: 1vw;
+  text-align: center;
 }
 
 .selectedPage {
   font-weight: bold;
 }
+

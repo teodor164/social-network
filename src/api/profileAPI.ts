@@ -1,5 +1,5 @@
 import {PhotosType, ProfileType} from "../types/types"
-import {CustomType, instance, ResultCodeEnum} from "./api"
+import {DefaultResponseType, instance, ResultCodeEnum} from "./api"
 
 
 type savePhotoType = {
@@ -18,7 +18,7 @@ export const profileAPI = {
         return instance.get<string>(`profile/status/${userId}`)
     },
     updateStatus(status: string) {
-        return instance.put<CustomType>(`profile/status`, {
+        return instance.put<DefaultResponseType>(`profile/status`, {
             status,
         })
     },
@@ -30,6 +30,6 @@ export const profileAPI = {
         }).then(response => response.data)
     },
     saveData(data: ProfileType) {
-        return instance.put<CustomType>(`profile`, data).then(response => response.data)
+        return instance.put<DefaultResponseType>(`profile`, data).then(response => response.data)
     },
 }

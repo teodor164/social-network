@@ -1,4 +1,4 @@
-import {CustomType, instance} from "./api"
+import {DefaultResponseType, instance} from "./api"
 
 
 type UsersType = {
@@ -14,15 +14,15 @@ type getUsersType = {
     error: string | null
 }
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
+    getUsers(currentPage = 1, pageSize = 10, term: string= '', friend: null | boolean = null) {
         return instance
-            .get<getUsersType>(`users?page=${currentPage}&count=${pageSize}`)
+            .get<getUsersType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`) )
             .then((response) => response.data)
     },
     unfollow(id: number) {
-        return instance.delete<CustomType>(`follow/${id}`)
+        return instance.delete<DefaultResponseType>(`follow/${id}`).then((response) => response.data)
     },
     follow(id: number) {
-        return instance.post<CustomType>(`follow/${id}`, {})
+        return instance.post<DefaultResponseType>(`follow/${id}`, {}).then((response) => response.data)
     },
 }

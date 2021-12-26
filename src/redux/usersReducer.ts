@@ -1,18 +1,22 @@
-import {ResultCodeEnum} from '../api/api'
+import {DefaultResponseType, ResultCodeEnum} from '../api/api'
 import {updateObjectInArray} from '../utils/object-helpers'
 import {UserType} from "../types/types";
-import { DefaultThunkType, InferActionTypes} from "./reduxStore";
+import {DefaultThunkType, InferActionTypes} from "./reduxStore";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/usersAPI";
 
 let initialState = {
     users: [] as Array<UserType>,
-    pageSize: 13,
+    pageSize: 16,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as Array<number>, //array of usersId
     portionSize: 10,
+    filter: {
+        term: '',
+        friend: null as null | boolean
+    }
 }
 
 const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -46,12 +50,15 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
         case 'socialNetwork/users/TOGGLE_IS_FETCHING':
             return {...state, isFetching: action.isFetching}
 
+        case 'socialNetwork/users/SET_FILTER':
+            return {...state, filter: action.payload}
+
         case 'socialNetwork/users/TOGGLE_IS_FOLLOWING_PROGRESS':
             return {
                 ...state,
                 followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter((id) => id != action.userId),
+                    : state.followingInProgress.filter((id) => id !== action.userId),
             }
 
         default:
@@ -63,7 +70,7 @@ export const actions = {
     followSuccess: (userId: number) => ({
         type: 'socialNetwork/users/FOLLOW',
         userId,
-    } as const ),
+    } as const),
     unfollowSuccess: (userId: number) => ({
         type: 'socialNetwork/users/UNFOLLOW',
         userId,
@@ -71,6 +78,10 @@ export const actions = {
     setUsers: (users: Array<UserType>) => ({
         type: 'socialNetwork/users/SET_USERS',
         users,
+    } as const),
+    setFilter: (filter: FilterType) => ({
+        type: 'socialNetwork/users/SET_FILTER',
+        payload: filter,
     } as const),
     setCurrentPage: (currentPage: number) => ({
         type: 'socialNetwork/users/SET_CURRENT_PAGE',
@@ -91,22 +102,26 @@ export const actions = {
     } as const)
 }
 
-export const getUsers = (currentPage: number, pageSize: number): ThunkType => {
+export const requestUsers = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => {
     return async (dispatch) => {
         dispatch(actions.toggleIsFetching(true))
         dispatch(actions.setCurrentPage(currentPage))
-        let data = await usersAPI.getUsers(currentPage, pageSize)
-        dispatch(actions.toggleIsFetching(false))
+        dispatch(actions.setFilter(filter))
+
+        let data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
+
         dispatch(actions.setUsers(data.items))
         dispatch(actions.setTotalUsersCount(data.totalCount))
+        dispatch(actions.toggleIsFetching(false))
     }
 }
 
-const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any,
+const _followUnfollowFlow = async (dispatch: DispatchType, userId: number,
+                                   apiMethod: (userId: number) => Promise<DefaultResponseType>,
                                    actionCreator: (userId: number) => ActionsTypes) => {
     dispatch(actions.toggleIsFollowingProgress(true, userId))
     let response = await apiMethod(userId)
-    if (response.data.resultCode === ResultCodeEnum.success) {
+    if (response.resultCode === ResultCodeEnum.success) {
         dispatch(actionCreator(userId))
     }
     dispatch(actions.toggleIsFollowingProgress(false, userId))
@@ -114,7 +129,7 @@ const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMe
 
 export const follow = (userId: number): ThunkType => {
     return async (dispatch) => {
-        _followUnfollowFlow(
+        await _followUnfollowFlow(
             dispatch,
             userId,
             usersAPI.follow.bind(userId),
@@ -125,7 +140,7 @@ export const follow = (userId: number): ThunkType => {
 
 export const unfollow = (userId: number): ThunkType => {
     return async (dispatch) => {
-        _followUnfollowFlow(
+        await _followUnfollowFlow(
             dispatch,
             userId,
             usersAPI.unfollow.bind(userId),
@@ -139,4 +154,5 @@ export default usersReducer
 type ActionsTypes = InferActionTypes<typeof actions>
 type DispatchType = Dispatch<ActionsTypes>
 type ThunkType = DefaultThunkType<ActionsTypes>
-type InitialStateType = typeof initialState
+export type FilterType = typeof initialState.filter
+export type InitialStateType = typeof initialState

@@ -13,7 +13,7 @@ type PropsType = {
 }
 let User: FC<PropsType> = ({user, followingInProgress, unfollow, follow, isAuth}) => {
     return (
-        <div>
+        <div className={styles.userContainer}>
             <div>
                 <NavLink to={`/profile/${user.id}`}>
                     <img
@@ -22,6 +22,7 @@ let User: FC<PropsType> = ({user, followingInProgress, unfollow, follow, isAuth}
                                 ? user.photos.small
                                 : 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png'
                         }
+                        alt='userPhoto'
                         className={styles.userPhoto}
                     />
                 </NavLink>
@@ -49,9 +50,11 @@ let User: FC<PropsType> = ({user, followingInProgress, unfollow, follow, isAuth}
                     )}
                 </div>
             )}
+            <div className={styles.userDescription}>
+                <div>{user.name}</div>
+                <div>{user.status}</div>
+            </div>
 
-            <div>{user.name}</div>
-            <div>{user.status}</div>
         </div>
     )
 }

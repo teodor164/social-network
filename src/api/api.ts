@@ -8,7 +8,7 @@ export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 })
 
-export type CustomType = {
+export type DefaultResponseType = {
     data: { id: number }
     resultCode: ResultCodeEnum
     messages: Array<string>
@@ -21,6 +21,7 @@ export enum ResultCodeEnum {
 export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }
+
 
 
 

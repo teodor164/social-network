@@ -74,12 +74,13 @@ const StaticProfileData: FC<StaticProfileDataPropsType>= ({ profile, toggleEditM
         {/* ContactsBlock */}
         <div className={s.infoBox}>
           Contacts
-          {Object.keys(profile.contacts).map((key) => {
+          {Object.keys(profile.contacts).map((item) => {
             return (
                 <Contacts
-                    contactTitle={key}
+                    key={item}
+                    contactTitle={item}
                     // @ts-ignore
-                    contactValue={profile.contacts[key]}
+                    contactValue={profile.contacts[item]}
                 />
             );
           })}
