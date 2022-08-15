@@ -1,0 +1,25 @@
+.profile__page {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+@media (max-width: 750px) {
+    .profile__page {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+    }
+}
+
+@media (max-width: 500px) {
+    .profile__page {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+}
+

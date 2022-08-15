@@ -3,7 +3,6 @@ import {stopSubmit} from 'redux-form'
 import { DefaultThunkType, InferActionTypes} from "./reduxStore";
 import {authAPI} from "../api/authAPI";
 import {securityAPI} from "../api/securityAPI";
-import {Action} from "redux";
 
 let initialState = {
     id: null as number | null,
@@ -92,4 +91,5 @@ export default authReducer
 
 export type initialStateType = typeof initialState
 type ActionsTypes = InferActionTypes<typeof actions>
-type ThunkType = DefaultThunkType<ActionsTypes >
+type ThunkType = DefaultThunkType<ActionsTypes>
+

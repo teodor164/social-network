@@ -1,0 +1,45 @@
+.profile__header__container {
+    background: #ffffff;
+    display: flex;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    margin: 15px 0;
+    padding: 3vw;
+}
+
+.avatar__container {
+    cursor: pointer;
+}
+
+.avatar__container > img {
+    border-radius: 50%;
+    width: 150px;
+    height: auto;
+}
+
+.profile__name {
+    font-size: 48px;
+    padding: 0 10px 5px 10px;
+}
+
+.profile__status {
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+@media (max-width: 500px) {
+    .avatar__container > img {
+        border-radius: 50%;
+        width: 25vw;
+        height: auto;
+    }
+
+    .profile__name {
+        font-size: 24px;
+    }
+
+    .profile__status {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+}

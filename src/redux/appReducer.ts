@@ -3,6 +3,7 @@ import { InferActionTypes} from "./reduxStore";
 
 let initialState = {
     initialized: false,
+    collapsed: false
 }
 
 const appReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -13,13 +14,20 @@ const appReducer = (state = initialState, action: ActionsType): InitialStateType
                 initialized: true,
             }
 
+        case "socialNetwork/app/COLLAPSED_SUCCESS" : {
+            return {
+                ...state,
+                collapsed: action.collapsed
+            }
+        }
         default:
             return state
     }
 }
 
 export const actions = {
-    initializedSuccess: () => ({type: 'socialNetwork/app/INITIALIZED_SUCCESS'} as const)
+    initializedSuccess: () => ({type: 'socialNetwork/app/INITIALIZED_SUCCESS'} as const),
+    toggleCollapsedMode: (collapsed: boolean) => ({type: 'socialNetwork/app/COLLAPSED_SUCCESS', collapsed }as const)
 }
 
 export const initializeApp = () => (dispatch: any) => {

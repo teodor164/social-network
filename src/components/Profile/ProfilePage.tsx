@@ -1,22 +1,17 @@
 import React, {ComponentType} from 'react'
-import {
-    getProfileInfo,
-    getStatus,
-    updateStatus,
-    savePhoto,
-    actions,
-    saveData,
-} from '../../redux/profileReducer'
+import {actions, getProfileInfo, getStatus, saveData, savePhoto, updateStatus,} from '../../redux/profileReducer'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
 import {withAuthRedirect} from '../../hoc/WithAuthRedirect'
 import {compose} from 'redux'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
 import {submit} from 'redux-form'
 import {AppStateType} from "../../redux/reduxStore"
 import {PostDataType, ProfileType} from "../../types/types"
 import MyPosts from "./MyPosts/MyPosts"
-import {RouteComponentProps} from "react-router-dom"
+import {RouteComponentProps, withRouter} from "react-router-dom"
+import s from './ProfilePage.module.css'
+import {ProfileHeader} from "./ProfileHeader/ProfileHeader";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import Preloader from "../common/Preloader/Preloader";
 
 type PropsType = {
     match: any
@@ -40,6 +35,7 @@ type PathParamsType = {
 }
 
 class Profile extends React.Component<PropsType & RouteComponentProps<PathParamsType>> {
+
     refreshProfile() {
         let userId = +this.props.match.params.userId
         if (!userId) {
@@ -60,18 +56,33 @@ class Profile extends React.Component<PropsType & RouteComponentProps<PathParams
     }
 
     render() {
+        if (!this.props.profile) {
+            return <Preloader/>
+        }
+
         return (
-            <>
-                <ProfileInfo
-                    {...this.props}
+            <div className={s.profile__page}>
+                <ProfileHeader
+                    savePhoto={this.props.savePhoto}
+                    profile={this.props.profile}
                     isOwner={!this.props.match.params.userId}
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatus}
+                />
+                <ProfileInfo
+                    profile={this.props.profile}
+                    toggleEditMode={this.props.toggleEditMode}
+                    isOwner={!this.props.match.params.userId}
+                    editMode={this.props.editMode}
+                    saveData={this.props.saveData}
+                    submit={this.props.submit}
                 />
                 <MyPosts
                     profile={this.props.profile}
                     addPost={this.props.addPost}
                     postsData={this.props.postsData}
                 />
-            </>
+            </div>
         )
     }
 }

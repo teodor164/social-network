@@ -1,12 +1,26 @@
-.header {
-  background-color: var(--bkg-block);
-  color: var(--text-white);
+.nickName {
+    padding: 0 5px;
+    color: #e7e5da;
+}
+
+.altMenuItem {
+    margin: 0 0.7vw;
 }
 
 .loginBlock {
-  float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.loginBlock a {
-  color: var(--text-white);
+@media (max-width: 1000px) {
+    .hiddenLoginBlock {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .altMenu {
+        display: none;
+    }
 }

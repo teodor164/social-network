@@ -28,3 +28,5 @@ export const authAPI = {
         return instance.delete<DefaultResponseType>(`auth/login`)
     },
 }
+
+

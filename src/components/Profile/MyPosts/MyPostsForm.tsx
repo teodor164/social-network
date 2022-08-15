@@ -1,19 +1,15 @@
 import React from 'react'
 import {InjectedFormProps, reduxForm} from 'redux-form'
 import {maxLengthCreator} from '../../../utils/validators'
-import {createField, getStringKeys, Textarea} from '../../common/FormsControl/FormsControl'
+import {createField, getStringKeys, MyTextarea} from '../../common/FormsControl/FormsControl'
 
 const maxLength70 = maxLengthCreator(70)
 
 const MyPostForm: React.FC<InjectedFormProps<NewPostFormType, PropsType> & PropsType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                {createField<NewPostKeysType>('New Post Text', 'postText', Textarea, [maxLength70], null)}
-            </div>
-            <div>
-                <button>Add Post</button>
-            </div>
+            {createField<NewPostKeysType>('New Post Text', 'postText', MyTextarea, [maxLength70], null)}
+            <button>Add Post</button>
         </form>
     )
 }
@@ -31,11 +27,10 @@ const PostsForm: React.FC<PostsFormType> = (props) => {
         props.addPost(formData.postText)
     }
 
-    return (
-        <div>
-            <MyPostReduxForm onSubmit={onSubmit}/>
-        </div>
-    )
+    return <>
+        <MyPostReduxForm onSubmit={onSubmit}/>
+    </>
+
 }
 
 export default PostsForm

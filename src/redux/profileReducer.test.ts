@@ -1,6 +1,4 @@
 import profileReducer, {actions} from './profileReducer'
-import reactDom from 'react-dom'
-import React from 'react'
 
 
 let initialState = {

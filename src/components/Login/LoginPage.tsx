@@ -2,24 +2,23 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {InjectedFormProps, reduxForm} from 'redux-form'
 import {userLogin} from '../../redux/authReducer'
-import {createField, getStringKeys, Input} from '../common/FormsControl/FormsControl'
+import {createField, getStringKeys, MyInput} from '../common/FormsControl/FormsControl'
 import {required} from '../../utils/validators'
-import {Redirect} from 'react-router'
-import s from './../common/FormsControl/FormsControl.module.css'
+import s from './Login.module.css'
 import {AppStateType} from "../../redux/reduxStore";
+import {Redirect} from "react-router-dom";
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPropsType> & LoginFormOwnPropsType>
     = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField<LoginFormValuesKeyType>('Email', "email", Input, [required], null)}
-            {createField<LoginFormValuesKeyType>('Password', 'password', Input, [required], 'password')}
-            {createField<LoginFormValuesKeyType>(undefined, 'rememberMe', Input, [], 'checkbox', 'Remember me')}
+            {createField<LoginFormValuesKeyType>('Email', "email", MyInput, [required], null)}
+            {createField<LoginFormValuesKeyType>('Password', 'password', MyInput, [required], 'password')}
             {captchaUrl && <img src={captchaUrl} alt={''}/>}
             {captchaUrl &&
-            createField<LoginFormValuesKeyType>('Symbols form image', 'captcha', Input, [required], null)}
+            createField<LoginFormValuesKeyType>('Symbols form image', 'captcha', MyInput, [required], null)}
             {error && <div className={s.formSummaryError}>{error}</div>}
-            <div>
+            <div className={s.login__button}>
                 <button>Login</button>
             </div>
         </form>
@@ -44,7 +43,7 @@ export const LoginPage = () => {
     return isAuth ? (
         <Redirect to={'/profile'}/>
     ) : (
-        <div>
+            <div className={s.login__container}>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
         </div>

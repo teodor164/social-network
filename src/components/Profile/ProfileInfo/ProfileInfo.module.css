@@ -1,88 +1,69 @@
-.description {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.profile__info__container {
+    background: #ffffff;
+    margin-bottom: 50px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
 }
 
-.imgBox {
-  width: 20em;
-  height: auto;
-  padding: 0;
+.profile__contacts__container {
+    padding: 25px;
 }
 
-.ava {
-  margin-top: 2em;
-  border-radius: 100%;
-  max-width: 80%;
-  height: auto;
+.profile__info__list {
+    padding: 15px;
+    list-style-type: none
 }
 
-.name {
-  margin-top: 0.5em;
-  font-size: 6vw;
+.profile__info__list > li {
+    padding: 10px;
+
 }
 
-.status {
-  margin-top: 0.7em;
-  font-size: 1.5vw;
+.profile__info__list > li > span {
+    margin-left: 20px;
+    font-size: 1.3rem;
 }
 
-.a0001 {
-  margin: 3em;
+.profile__contacts__list {
+    display: inline;
 }
 
-.edit {
-  margin: 0em 0em 1em 1em;
-  background-color: var(--bkg-block);
-  width: 5em;
-  height: 2.5em;
-  border-radius: 5%;
-  color: var(--text-white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.profile__contacts__list > a {
+    padding: 20px;
 }
 
-.infoBlock {
-  display: flex;
-  flex-direction: row;
+.profile__contacts__list > a > img {
+    height: auto;
+    width: 80px;
+    margin: 45px 20px 20px 20px;
 }
 
-.infoBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  border-radius: 2.5%;
-  padding: 2em;
-  width: 15em;
-  background-color: var(--bkg-block);
-  margin-right: 1em;
-  color: var(--text-white);
+.profile__contacts__nodata {
+    font-size: 1.5rem;
 }
 
-.infoBoxItem {
-  padding: 1.8em 0 1.8em 0.3em;
-  font-size: 1.6vw;
+.profile__info__nodata {
+    font-size: 1.5rem;
+    padding: 25px;
 }
 
-.contactBoxItem {
-  padding: 0.5em;
-}
 
-.key {
-  color: var(--text-key);
-}
-
-.property {
-  color: var(--text-property-default);
-}
-
-.propertyString {
-  color: var(--text-string);
-}
-
-.formSummaryError {
-  color: red;
+@media (max-width: 540px) {
+    .profile__info__list > li > span {
+        margin-left: 20px;
+        font-size: 1rem;
+    }
+    .profile__contacts__list > a > img {
+        height: auto;
+        width: 40px;
+        margin: 10px;
+    }
+    .profile__contacts__nodata {
+        font-size: 1rem;
+    }
+    .profile__info__nodata {
+        font-size: 1rem;
+        padding: 25px;
+    }
 }

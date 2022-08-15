@@ -32,9 +32,7 @@ const MyPosts: FC<PropsType> = React.memo(({profile, postsData, addPost}) => {
           )
         })}
       </div>
-      <div>
         <MyPostsForm addPost={addPost} />
-      </div>
     </div>
   )
 })

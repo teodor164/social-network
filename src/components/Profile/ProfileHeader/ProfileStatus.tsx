@@ -1,5 +1,7 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react'
-import s from './../ProfileInfo.module.css'
+import { NavLink } from 'react-router-dom'
+import s from './ProfileHeader.module.css'
+import {Input} from "antd";
 
 type PropsType = {
     status: string
@@ -28,21 +30,21 @@ const ProfileStatus: FC<PropsType> = (props) => {
     }, [props.status])
 
     return (
-        <div className={s.status}>
+        <div className={s.profile__status}>
             {!editMode && (
                 <div>
                     {props.isOwner ?
-                        (<span onDoubleClick={activateEditMode}>
-                            {props.status || 'NO STATUS'}
-                        </span>) : (<span>
-                            {props.status || 'NO STATUS'}
+                        (<a onClick={activateEditMode}>
+                            {props.status || 'Set Status'}
+                        </a>) : (<span>
+                            {props.status || `This user did not set his status`}
                         </span>)
                     }
                 </div>
             )}
             {editMode && (
                 <div>
-                    <input
+                    <Input
                         onChange={onStatusChange}
                         autoFocus={true}
                         onBlur={deActivateEditMode}
